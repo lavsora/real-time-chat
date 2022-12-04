@@ -10,6 +10,7 @@ import LangContextWrapper from './components/context/langContext';
 
 const App = () => {
     const { auth } = useContext(Context)
+    // eslint-disable-next-line
     const [user, loading, error] = useAuthState(auth)
 
     if (loading) {

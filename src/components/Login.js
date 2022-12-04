@@ -12,8 +12,8 @@ const Login = () => {
 
     const login = async () => {
         const provider = new firebase.auth.GoogleAuthProvider()
+        // eslint-disable-next-line
         const { user } = await auth.signInWithPopup(provider)
-        console.log(user)
     }
 
     return (

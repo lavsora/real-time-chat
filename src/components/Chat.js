@@ -33,8 +33,8 @@ const Chat = () => {
             <div key={message.createdAt}
                 style={{
                     margin: 10,
-                    border: user.uid === message.uid ? '2px solid green' : '2px dashed red',
-                    marginLeft: user.uid === message.uid ? 'auto' : '10px',
+                    border: user === null ? null : user.uid === message.uid ? '2px solid green' : '2px dashed red',
+                    marginLeft: user === null ? null : user.uid === message.uid ? '2px solid green' : '2px dashed red',
                     width: 'fit-content',
                     padding: 5,
                     borderRadius: '12px'
@@ -45,6 +45,7 @@ const Chat = () => {
                 </Grid>
                 <div>{message.text}</div>
             </div>)
+            
         )
     }
 
