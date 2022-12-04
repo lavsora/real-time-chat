@@ -24,9 +24,7 @@ const Navbar = () => {
                             <Button onClick={() => auth.signOut()} variant={"outlined"}>{translations.buttons.logOut}</Button>
                         </NavLink>
                         :
-                        <NavLink to={LOGIN_ROUTE}>
-                            <Button variant={"outlined"}>{translations.buttons.login}</Button>
-                        </NavLink>
+                        null
                     }
                 </Grid>
             </Toolbar>
