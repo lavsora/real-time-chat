@@ -1,5 +1,6 @@
 import React, { createContext } from 'react';
 import ReactDOM from 'react-dom';
+import ThemeContextWrapper from './components/context/themeContext';
 import App from './App';
 import firebase from "firebase";
 import 'firebase/firestore'
@@ -22,13 +23,15 @@ const firestore = firebase.firestore()
 
 
 ReactDOM.render(
-    <Context.Provider value={{
-        firebase,
-        auth,
-        firestore
-    }}>
-        <App />
-    </Context.Provider>,
+    <ThemeContextWrapper>
+        <Context.Provider value={{
+            firebase,
+            auth,
+            firestore
+        }}>
+            <App />
+        </Context.Provider>
+    </ThemeContextWrapper>,
     document.getElementById('root')
 );
 

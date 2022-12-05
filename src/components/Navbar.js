@@ -6,19 +6,26 @@ import { Context } from "../index";
 import { useAuthState } from "react-firebase-hooks/auth";
 import SelectLanguages from './SelectLanguages'
 import { LangContext } from './context/langContext';
+import ToggleStyle from './ToggleStyle';
+import { ThemeContext } from './context/themeContext';
 
 const Navbar = () => {
     const { auth } = useContext(Context)
     const { translations } = useContext(LangContext)
+    const { changeTheme } = useContext(ThemeContext)
     const [user] = useAuthState(auth)
 
     return (
-        <AppBar color={"secondary"} position="static">
+        <AppBar position="static" style={{ backgroundColor: `${changeTheme.background.navbarColor}` }}>
             <Toolbar variant={"dense"}>
                 <SelectLanguages />
+                <ToggleStyle />
                 <Grid container justify={"flex-end"}>
                     {user ?
-                        <Button onClick={() => auth.signOut()} variant={"outlined"}>{translations.buttons.logOut}</Button>
+                        <Button
+                            onClick={() => auth.signOut()}
+                            variant={"outlined"}
+                            style={{ backgroundColor: `${changeTheme.buttons.bgColor}`, color: `${changeTheme.buttons.txtColor}`}}>{translations.buttons.logOut}</Button>
                         :
                         null
                     }

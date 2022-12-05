@@ -4,12 +4,39 @@
   box-sizing: border-box;
 }
 
+body {
+  overflow-y: hidden;
+  font-family: monospace;
+}
+
+input[name=message] {
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-family: inherit;
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.5;
+  background-clip: padding-box;
+  border: none;
+}
+
+.toggle-block {
+  display: flex;
+  align-items: center;
+  margin-left: 3rem;
+}
+
+.toggle-block img {
+  height: 3rem;
+}
+
 .lds-hourglass {
   display: inline-block;
   position: relative;
   width: 80px;
   height: 80px;
 }
+
 .lds-hourglass:after {
   content: " ";
   display: block;
@@ -22,15 +49,18 @@
   border-color: #cef transparent #cef transparent;
   animation: lds-hourglass 1.2s infinite;
 }
+
 @keyframes lds-hourglass {
   0% {
     transform: rotate(0);
     animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
   }
+
   50% {
     transform: rotate(900deg);
     animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
   }
+
   100% {
     transform: rotate(1800deg);
   }

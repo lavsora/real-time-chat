@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import { Context } from "../index";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Avatar, Button, Container, Grid } from "@material-ui/core";
@@ -7,9 +7,11 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 import Loader from "./Loader";
 import firebase from "firebase";
 import { LangContext } from './context/langContext';
+import { ThemeContext } from './context/themeContext';
 
 const Chat = () => {
     const { translations } = useContext(LangContext)
+    const { changeTheme } = useContext(ThemeContext)
     const { auth, firestore } = useContext(Context)
     const [user] = useAuthState(auth)
     const [value, setValue] = useState('')
@@ -37,7 +39,8 @@ const Chat = () => {
                     marginLeft: user === null ? null : user.uid === message.uid ? '2px solid green' : '2px dashed red',
                     width: 'fit-content',
                     padding: 5,
-                    borderRadius: '12px'
+                    borderRadius: '12px',
+                    backgroundColor: `${changeTheme.chat.chatMsgColor}`,
                 }}>
                 <Grid container>
                     <Avatar src={message.photoURL} />
@@ -45,36 +48,37 @@ const Chat = () => {
                 </Grid>
                 <div>{message.text}</div>
             </div>)
-            
+
         )
     }
 
-    if (loading) {
-        return <Loader />
-    }
+    if (loading) return <Loader />
 
     return (
         <Container>
             <Grid container
                 justify={"center"}
-                style={{ height: window.innerHeight - 50, marginTop: 20 }}>
-                <div style={{ width: '80%', height: '60vh', border: '1px solid gray', overflowY: 'auto', borderRadius: '10px' }}>
+                style={{ height: window.innerHeight - 50, marginTop: 30 }}>
+                <div style={{ width: '80%', height: '50vh', overflowY: 'auto', backgroundColor: `${changeTheme.chat.chatBgColor}`, color: `${changeTheme.chat.chatTxtColor}` }}>
                     {renderMessages(messages)}
                 </div>
                 <Grid
                     container
-                    direction={"column"}
-                    alignItems={"flex-end"}
-                    style={{ width: '80%' }}
+                    style={{ flexDirection: 'column', alignItems: 'flex-end', width: '80%' }}
                 >
-                    <TextField
-                        fullWidth
-                        rowsMax={2}
-                        variant={"outlined"}
+                    <input
+                        name='message'
+                        style={{ color: `${changeTheme.chat.chatTxtColor}`, backgroundColor: `${changeTheme.chat.chatBgColor}`}}
+                        placeholder='message'
                         value={value}
                         onChange={e => setValue(e.target.value)}
                     />
-                    <Button onClick={sendMessage} variant={"outlined"}>{translations.buttons.submit}</Button>
+                    <Button
+                        onClick={sendMessage}
+                        variant={"outlined"}
+                        style={{ backgroundColor: `${changeTheme.buttons.bgColor}`, color: `${changeTheme.buttons.txtColor}`, marginTop: '1.5rem'}}>
+                        {translations.buttons.submit}
+                    </Button>
                 </Grid>
             </Grid>
         </Container>
