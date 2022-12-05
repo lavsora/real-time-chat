@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom'
 import Navbar from "./components/Navbar";
 import AppRouter from "./components/AppRouter";
@@ -16,18 +16,20 @@ const App = () => {
     const [user, loading, error] = useAuthState(auth)
     const { changeTheme } = useContext(ThemeContext)
 
+    useEffect(() => {
+        document.body.style.backgroundColor = `${changeTheme.background.mainBgColor}`
+    }, [changeTheme])
+
     if (loading) return <Loader />
 
 
     return (
-            <LangContextWrapper>
-                <BrowserRouter>
-                    <div style={{ backgroundColor: `${changeTheme.background.mainBgColor}` }}>
-                        <Navbar />
-                        <AppRouter />
-                    </div>
-                </BrowserRouter>
-            </LangContextWrapper>
+        <LangContextWrapper>
+            <BrowserRouter>
+                <Navbar />
+                <AppRouter />
+            </BrowserRouter>
+        </LangContextWrapper>
     );
 };
 

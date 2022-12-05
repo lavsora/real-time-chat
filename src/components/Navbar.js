@@ -18,17 +18,19 @@ const Navbar = () => {
     return (
         <AppBar position="static" style={{ backgroundColor: `${changeTheme.background.navbarColor}` }}>
             <Toolbar variant={"dense"}>
-                <SelectLanguages />
-                <ToggleStyle />
-                <Grid container justify={"flex-end"}>
-                    {user ?
-                        <Button
-                            onClick={() => auth.signOut()}
-                            variant={"outlined"}
-                            style={{ backgroundColor: `${changeTheme.buttons.bgColor}`, color: `${changeTheme.buttons.txtColor}`}}>{translations.buttons.logOut}</Button>
-                        :
-                        null
-                    }
+                <Grid container
+                justify='space-around'
+                alignItems='center'>
+                    <SelectLanguages />
+                    <ToggleStyle />
+                        {user ?
+                            <Button
+                                onClick={() => auth.signOut()}
+                                variant={"outlined"}
+                                style={{ backgroundColor: `${changeTheme.buttons.bgColor}`, color: `${changeTheme.buttons.txtColor}` }}>{translations.buttons.logOut}</Button>
+                            :
+                            null
+                        }
                 </Grid>
             </Toolbar>
         </AppBar>

@@ -23,7 +23,6 @@ input[name=message] {
 .toggle-block {
   display: flex;
   align-items: center;
-  margin-left: 3rem;
 }
 
 .toggle-block img {

@@ -7,21 +7,21 @@ import sunIcon from '../utils/icons/sun.png'
 import moonIcon from '../utils/icons/moon.png'
 
 const ToggleStyle = () => {
-    const [theme, setTheme] = useState(false)
+    const [checked, setChecked] = useState(false)
     const { changeTheme, setThemeContext } = useContext(ThemeContext)
 
     const onChangeValue = () => {
-        setTheme(!theme)
+        setChecked(!checked)
         
-        if(theme === true) setThemeContext('light')
+        if(checked === true) setThemeContext('light')
 
-        if(theme === false) setThemeContext('dark')
+        if(checked === false) setThemeContext('dark')
     }
 
     return (
         <div className="toggle-block">
             <img style={{filter: `${changeTheme.background.filterIcon}`}} src={sunIcon} alt='sun-icon' />
-            <Switch color="default" onChange={onChangeValue} />
+            <Switch color="default" checked={checked} onChange={onChangeValue} />
             <img style={{filter: `${changeTheme.background.filterIcon}`}} src={moonIcon} alt='moon-icon' />
         </div>
     )
