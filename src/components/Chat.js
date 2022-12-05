@@ -68,7 +68,7 @@ const Chat = () => {
                     <input
                         name='message'
                         style={{ color: `${changeTheme.chat.chatTxtColor}`, backgroundColor: `${changeTheme.chat.chatBgColor}`}}
-                        placeholder='message'
+                        placeholder={translations.buttons.placeholder}
                         value={value}
                         onChange={e => setValue(e.target.value)}
                     />

@@ -10,7 +10,8 @@ export const languages = {
             login: 'Логин',
             logWith: 'Войти с помощью GOOGLE',
             logOut: 'Выйти',
-            submit: 'Отправить'
+            submit: 'Отправить',
+            placeholder: 'сообщение'
         }
     },
 
@@ -25,7 +26,8 @@ export const languages = {
             login: 'Login',
             logWith: 'Login with GOOGLE',
             logOut: 'Log out',
-            submit: 'Submit'
+            submit: 'Submit',
+            placeholder: 'message'
         }
     },
 
@@ -40,7 +42,8 @@ export const languages = {
             login: 'Entrar',
             logWith: 'Iniciar con GOOGLE',
             logOut: 'Salir',
-            submit: 'Enviar'
+            submit: 'Enviar',
+            placeholder: 'mensaje'
         }
     }
 }
