@@ -4,7 +4,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { Avatar, Button, Container, Grid } from "@material-ui/core";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import Loader from "./Loader";
-import firebase from "firebase";
+import firebase from 'firebase/compat/app';
 import { LangContext } from './context/langContext';
 import { ThemeContext } from './context/themeContext';
 
@@ -26,7 +26,7 @@ const Chat = () => {
     const sendMessage = async () => {
         firestore.collection('messages').add({
             uid: user.uid,
-            displayName: user.displayName,
+            displayName: user.displayName || user.email,
             photoURL: user.photoURL,
             text: value,
             createdAt: firebase.firestore.FieldValue.serverTimestamp()
@@ -46,6 +46,7 @@ const Chat = () => {
                     borderRadius: '12px',
                     backgroundColor: `${changeTheme.chat.chatMsgColor}`,
                 }}>
+                    {console.log(user)}
                 <Grid container>
                     <Avatar src={message.photoURL} />
                     <div style={{ display: 'flex', alignItems: 'center', marginLeft: '5px' }}>{message.displayName}</div>

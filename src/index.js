@@ -2,9 +2,9 @@ import React, { createContext } from 'react';
 import ReactDOM from 'react-dom';
 import ThemeContextWrapper from './components/context/themeContext';
 import App from './App';
-import firebase from "firebase";
-import 'firebase/firestore'
-import 'firebase/auth'
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
 
 firebase.initializeApp({
     apiKey: "AIzaSyDjf8vKWern9T_J5V9jsHp2AqojuAwX2MI",

@@ -1,16 +1,21 @@
-import React, { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Button, Container, Grid } from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 import { AuthContext } from "../index";
-import firebase from "firebase";
+import Loader from "./Loader";
+import firebase from 'firebase/compat/app';
 import { LangContext } from './context/langContext';
 import { ThemeContext } from './context/themeContext';
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 
 
 const Login = () => {
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
     const { auth } = useContext(AuthContext)
     const { translations } = useContext(LangContext)
     const { changeTheme } = useContext(ThemeContext)
+    const [signInWithEmailAndPassword, loading] = useSignInWithEmailAndPassword(auth);
 
     const loginWithGoogle = async () => {
         const provider = new firebase.auth.GoogleAuthProvider()
@@ -18,10 +23,18 @@ const Login = () => {
         const { user } = await auth.signInWithPopup(provider)
     }
 
+    const loginWithEmailAndPassword = (e) => {
+        e.preventDefault()
+
+        signInWithEmailAndPassword(email, password)
+    }
+
+    if (loading) return <Loader />
+
     return (
         <Container>
             <Grid container
-                style={{ height: window.innerHeight - 50 }}
+                style={{ height: '80vh' }}
                 alignItems={"center"}
                 justify={"center"}
             >
@@ -33,17 +46,21 @@ const Login = () => {
                     <Box p={2}>
                         <form
                             style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
-                            onSubmit={(e) => e.preventDefault()}>
+                            onSubmit={loginWithEmailAndPassword}>
                             <input
                                 type='text'
                                 name='login'
+                                value={email}
                                 placeholder={translations.inputs.placeholderLog}
-                                style={{ color: `${changeTheme.chat.chatTxtColor}`, backgroundColor: `${changeTheme.chat.chatBgColor}` }} />
+                                style={{ color: `${changeTheme.chat.chatTxtColor}`, backgroundColor: `${changeTheme.chat.chatBgColor}` }}
+                                onChange={(e) => setEmail(e.target.value)} />
                             <input
                                 type='password'
                                 name='password'
+                                value={password}
                                 placeholder={translations.inputs.placeholderPass}
-                                style={{ color: `${changeTheme.chat.chatTxtColor}`, backgroundColor: `${changeTheme.chat.chatBgColor}` }} />
+                                style={{ color: `${changeTheme.chat.chatTxtColor}`, backgroundColor: `${changeTheme.chat.chatBgColor}` }}
+                                onChange={(e) => setPassword(e.target.value)} />
                             <Button
                                 type='submit'
                                 style={{ backgroundColor: `${changeTheme.buttons.bgColor}`, color: `${changeTheme.buttons.txtColor}`, width: 'fit-content' }}
