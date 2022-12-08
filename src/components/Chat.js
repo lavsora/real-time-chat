@@ -46,7 +46,6 @@ const Chat = () => {
                     borderRadius: '12px',
                     backgroundColor: `${changeTheme.chat.chatMsgColor}`,
                 }}>
-                    {console.log(user)}
                 <Grid container>
                     <Avatar src={message.photoURL} />
                     <div style={{ display: 'flex', alignItems: 'center', marginLeft: '5px' }}>{message.displayName}</div>
