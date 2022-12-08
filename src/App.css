@@ -20,6 +20,17 @@ input[name=message] {
   border: none;
 }
 
+form input {
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  background-clip: padding-box;
+  margin: 1rem;
+}
+
 .toggle-block {
   display: flex;
   align-items: center;

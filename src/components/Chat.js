@@ -1,5 +1,5 @@
 import { useContext, useState, useRef, useEffect } from 'react';
-import { Context } from "../index";
+import { AuthContext } from "../index";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Avatar, Button, Container, Grid } from "@material-ui/core";
 import { useCollectionData } from "react-firebase-hooks/firestore";
@@ -11,7 +11,7 @@ import { ThemeContext } from './context/themeContext';
 const Chat = () => {
     const { translations } = useContext(LangContext)
     const { changeTheme } = useContext(ThemeContext)
-    const { auth, firestore } = useContext(Context)
+    const { auth, firestore } = useContext(AuthContext)
     const [user] = useAuthState(auth)
     const [value, setValue] = useState('')
     const [messages, loading] = useCollectionData(
@@ -81,7 +81,7 @@ const Chat = () => {
                     <input
                         name='message'
                         style={{ color: `${changeTheme.chat.chatTxtColor}`, backgroundColor: `${changeTheme.chat.chatBgColor}` }}
-                        placeholder={translations.buttons.placeholder}
+                        placeholder={translations.inputs.placeholderMessage}
                         value={value}
                         onChange={e => setValue(e.target.value)}
                     />

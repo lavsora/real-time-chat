@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import { Button, Grid } from "@material-ui/core";
-import { Context } from "../index";
+import { AuthContext } from "../index";
 import { useAuthState } from "react-firebase-hooks/auth";
 import SelectLanguages from './SelectLanguages'
 import { LangContext } from './context/langContext';
@@ -10,7 +10,7 @@ import ToggleStyle from './ToggleStyle';
 import { ThemeContext } from './context/themeContext';
 
 const Navbar = () => {
-    const { auth } = useContext(Context)
+    const { auth } = useContext(AuthContext)
     const { translations } = useContext(LangContext)
     const { changeTheme } = useContext(ThemeContext)
     const [user] = useAuthState(auth)

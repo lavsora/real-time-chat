@@ -7,11 +7,16 @@ export const languages = {
         },
 
         buttons: {
-            login: 'Логин',
+            logIn: 'Войти',
             logWith: 'Войти с помощью GOOGLE',
             logOut: 'Выйти',
             submit: 'Отправить',
-            placeholder: 'сообщение'
+        },
+
+        inputs: {
+            placeholderMessage: 'сообщение',
+            placeholderLog: 'логин',
+            placeholderPass: 'пароль',
         }
     },
 
@@ -23,11 +28,16 @@ export const languages = {
         },
 
         buttons: {
-            login: 'Login',
+            logIn: 'LogIn',
             logWith: 'Login with GOOGLE',
             logOut: 'Log out',
             submit: 'Submit',
-            placeholder: 'message'
+        },
+
+        inputs: {
+            placeholderMessage: 'message',
+            placeholderLog: 'login',
+            placeholderPass: 'password',
         }
     },
 
@@ -39,11 +49,16 @@ export const languages = {
         },
 
         buttons: {
-            login: 'Entrar',
+            logIn: 'Entrar',
             logWith: 'Iniciar con GOOGLE',
             logOut: 'Salir',
             submit: 'Enviar',
-            placeholder: 'mensaje'
+        },
+
+        inputs: {
+            placeholderMessage: 'mensaje',
+            placeholderLog: 'acceso',
+            placeholderPass: 'clave',
         }
     }
 }

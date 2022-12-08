@@ -16,7 +16,7 @@ firebase.initializeApp({
     measurementId: "G-0G3X4T66SY"
 });
 
-export const Context = createContext(null)
+export const AuthContext = createContext(null)
 
 const auth = firebase.auth()
 const firestore = firebase.firestore()
@@ -24,13 +24,13 @@ const firestore = firebase.firestore()
 
 ReactDOM.render(
     <ThemeContextWrapper>
-        <Context.Provider value={{
+        <AuthContext.Provider value={{
             firebase,
             auth,
             firestore
         }}>
             <App />
-        </Context.Provider>
+        </AuthContext.Provider>
     </ThemeContextWrapper>,
     document.getElementById('root')
 );
