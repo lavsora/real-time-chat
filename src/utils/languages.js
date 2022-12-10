@@ -20,11 +20,11 @@ export const languages = {
         },
 
         errors: {
-            errorLength: 'Минимальная длина пароля 3 символа.',
-            errorEmptyEmail: 'Email не может быть пустым.',
-            errorEmailCorrect: 'Некорректный email.', 
-            errorEmptyPass: 'Пароль не должен быть пустым.',
-            errorSignIn: 'Неправильный email или пароль.'
+            errorLength: 'Минимальная длина пароля 3 символа',
+            errorEmptyEmail: 'Email не может быть пустым',
+            errorEmailCorrect: 'Некорректный email', 
+            errorEmptyPass: 'Пароль не должен быть пустым',
+            errorSignIn: 'Неправильный email или пароль'
         }
     },
 
@@ -49,11 +49,11 @@ export const languages = {
         },
 
         errors: {
-            errorLength: 'Минимальная длина пароля 3 символа.',
-            errorEmptyEmail: 'Email не может быть пустым.',
-            errorEmailCorrect: 'Некорректный email.', 
-            errorEmptyPass: 'Пароль не должен быть пустым.',
-            errorSignIn: 'Неправильный email или пароль.'
+            errorLength: 'The minimum password length is 3 characters',
+            errorEmptyEmail: 'Email cannot be empty',
+            errorEmailCorrect: 'Invalid email', 
+            errorEmptyPass: 'The password must not be empty',
+            errorSignIn: 'Wrong email or password'
         }
     },
 
@@ -78,11 +78,11 @@ export const languages = {
         },
 
         errors: {
-            errorLength: 'Минимальная длина пароля 3 символа.',
-            errorEmptyEmail: 'Email не может быть пустым.',
-            errorEmailCorrect: 'Некорректный email.', 
-            errorEmptyPass: 'Пароль не должен быть пустым.',
-            errorSignIn: 'Неправильный email или пароль.'
+            errorLength: 'Longitud mínima de la contraseña 3 caracteres',
+            errorEmptyEmail: 'El correo electrónico no puede estar vacío',
+            errorEmailCorrect: 'Email incorrecto', 
+            errorEmptyPass: 'La contraseña no debe estar vacía',
+            errorSignIn: 'Correo o contraseña equivocada'
         }
     }
 }
