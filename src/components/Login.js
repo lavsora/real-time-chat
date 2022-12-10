@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Button, Container, Grid } from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 import { AuthContext } from "../index";
@@ -7,16 +7,19 @@ import firebase from 'firebase/compat/app';
 import { LangContext } from './context/langContext';
 import { ThemeContext } from './context/themeContext';
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
-
+import useInput from '../utils/useInput';
 
 const Login = () => {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const email = useInput('', { isEmpty: true, minLength: 3, emailError: true })
+    const password = useInput('', { isEmpty: true, minLength: 3 })
+
+    const [errorAuthMessage, setErrorAuthMessage] = useState(false)
 
     const { auth } = useContext(AuthContext)
     const { translations } = useContext(LangContext)
     const { changeTheme } = useContext(ThemeContext)
-    const [signInWithEmailAndPassword, loading, error] = useSignInWithEmailAndPassword(auth);
+
+    const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
 
     const loginWithGoogle = async () => {
         const provider = new firebase.auth.GoogleAuthProvider()
@@ -27,11 +30,14 @@ const Login = () => {
     const loginWithEmailAndPassword = (e) => {
         e.preventDefault()
 
-        signInWithEmailAndPassword(email, password)
-
-        setEmail('')
-        setPassword('')
+        signInWithEmailAndPassword(email.value, password.value)
     }
+
+    useEffect(() => {
+        if (error) {
+            setErrorAuthMessage(true)
+        }
+    }, [error])
 
     if (loading) return <Loader />
 
@@ -54,21 +60,36 @@ const Login = () => {
                             <input
                                 type='text'
                                 name='email'
-                                value={email}
                                 placeholder={translations.inputs.placeholderEmail}
                                 style={{ color: `${changeTheme.chat.chatTxtColor}`, backgroundColor: `${changeTheme.chat.chatBgColor}` }}
-                                onChange={(e) => setEmail(e.target.value)} />
+                                value={email.value}
+                                onChange={(e) => email.onChange(e)}
+                                onBlur={(e) => email.onBlur(e)} />
+
+                            {(email.isDirty && email.emailError) && <div className='errorMessage'>{translations.errors.errorEmailCorrect}</div>}
+                            {(email.isDirty && email.isEmpty) && <p className='errorMessage'>{translations.errors.errorEmptyEmail}</p>}
+
+
                             <input
                                 type='password'
                                 name='password'
-                                value={password}
                                 placeholder={translations.inputs.placeholderPass}
                                 style={{ color: `${changeTheme.chat.chatTxtColor}`, backgroundColor: `${changeTheme.chat.chatBgColor}` }}
-                                onChange={(e) => setPassword(e.target.value)} />
+                                value={password.value}
+                                onChange={(e) => password.onChange(e)}
+                                onBlur={(e) => password.onBlur(e)} />
+
+                            {(password.isDirty && password.isEmpty) && <p className='errorMessage'>{translations.errors.errorEmptyPass}</p>}
+                            {(password.isDirty && password.minLengthError) && <p className='errorMessage'>{translations.errors.errorLength}</p>}
+
                             <Button
+                                disabled={!email.inputValid || !password.inputValid}
                                 type='submit'
                                 style={{ backgroundColor: `${changeTheme.buttons.bgColor}`, color: `${changeTheme.buttons.txtColor}`, width: 'fit-content' }}
-                                variant={"outlined"}>{translations.buttons.logIn}</Button>
+                                variant={"outlined"}
+                            >{translations.buttons.logIn}</Button>
+
+                            {errorAuthMessage ? <p className='errorMessage'>{translations.errors.errorSignIn}</p> : null}
                         </form>
                     </Box>
                     <Box p={5}>

@@ -31,6 +31,10 @@ form input {
   margin: 1rem;
 }
 
+.errorMessage {
+  color: red;
+}
+
 .toggle-block {
   display: flex;
   align-items: center;

@@ -17,6 +17,14 @@ export const languages = {
             placeholderMessage: 'сообщение',
             placeholderEmail: 'email',
             placeholderPass: 'пароль',
+        },
+
+        errors: {
+            errorLength: 'Минимальная длина пароля 3 символа.',
+            errorEmptyEmail: 'Email не может быть пустым.',
+            errorEmailCorrect: 'Некорректный email.', 
+            errorEmptyPass: 'Пароль не должен быть пустым.',
+            errorSignIn: 'Неправильный email или пароль.'
         }
     },
 
@@ -38,6 +46,14 @@ export const languages = {
             placeholderMessage: 'message',
             placeholderEmail: 'email',
             placeholderPass: 'password',
+        },
+
+        errors: {
+            errorLength: 'Минимальная длина пароля 3 символа.',
+            errorEmptyEmail: 'Email не может быть пустым.',
+            errorEmailCorrect: 'Некорректный email.', 
+            errorEmptyPass: 'Пароль не должен быть пустым.',
+            errorSignIn: 'Неправильный email или пароль.'
         }
     },
 
@@ -59,6 +75,14 @@ export const languages = {
             placeholderMessage: 'mensaje',
             placeholderEmail: 'email',
             placeholderPass: 'clave',
+        },
+
+        errors: {
+            errorLength: 'Минимальная длина пароля 3 символа.',
+            errorEmptyEmail: 'Email не может быть пустым.',
+            errorEmailCorrect: 'Некорректный email.', 
+            errorEmptyPass: 'Пароль не должен быть пустым.',
+            errorSignIn: 'Неправильный email или пароль.'
         }
     }
 }
