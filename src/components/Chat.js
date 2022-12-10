@@ -21,7 +21,9 @@ const Chat = () => {
 
     useEffect(() => {
         if (!loading) blockMessages.current.scrollTop = blockMessages.current.scrollHeight
-    }, [loading])
+
+        //eslint-disable-next-line
+    }, [firestore.collection('messages')])
 
     const sendMessage = async () => {
         firestore.collection('messages').add({

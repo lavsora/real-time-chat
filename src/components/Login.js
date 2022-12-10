@@ -12,10 +12,11 @@ import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
     const { auth } = useContext(AuthContext)
     const { translations } = useContext(LangContext)
     const { changeTheme } = useContext(ThemeContext)
-    const [signInWithEmailAndPassword, loading] = useSignInWithEmailAndPassword(auth);
+    const [signInWithEmailAndPassword, loading, error] = useSignInWithEmailAndPassword(auth);
 
     const loginWithGoogle = async () => {
         const provider = new firebase.auth.GoogleAuthProvider()
@@ -27,6 +28,9 @@ const Login = () => {
         e.preventDefault()
 
         signInWithEmailAndPassword(email, password)
+
+        setEmail('')
+        setPassword('')
     }
 
     if (loading) return <Loader />
@@ -49,9 +53,9 @@ const Login = () => {
                             onSubmit={loginWithEmailAndPassword}>
                             <input
                                 type='text'
-                                name='login'
+                                name='email'
                                 value={email}
-                                placeholder={translations.inputs.placeholderLog}
+                                placeholder={translations.inputs.placeholderEmail}
                                 style={{ color: `${changeTheme.chat.chatTxtColor}`, backgroundColor: `${changeTheme.chat.chatBgColor}` }}
                                 onChange={(e) => setEmail(e.target.value)} />
                             <input

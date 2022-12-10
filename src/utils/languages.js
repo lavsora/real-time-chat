@@ -15,7 +15,7 @@ export const languages = {
 
         inputs: {
             placeholderMessage: 'сообщение',
-            placeholderLog: 'логин',
+            placeholderEmail: 'email',
             placeholderPass: 'пароль',
         }
     },
@@ -36,7 +36,7 @@ export const languages = {
 
         inputs: {
             placeholderMessage: 'message',
-            placeholderLog: 'login',
+            placeholderEmail: 'email',
             placeholderPass: 'password',
         }
     },
@@ -57,7 +57,7 @@ export const languages = {
 
         inputs: {
             placeholderMessage: 'mensaje',
-            placeholderLog: 'acceso',
+            placeholderEmail: 'email',
             placeholderPass: 'clave',
         }
     }
